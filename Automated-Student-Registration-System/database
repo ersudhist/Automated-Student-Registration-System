@@ -1,0 +1,43 @@
+ create database Automated_Student_Registration_System;
+ use Automated_Student_Registration_System;
+ 
+ ============Display Section==============
+ show databases;
+ show tables;
+ select * from courses;
+ select * from students;
+ select * from batch;
+ select * from batchSeats;
+ 
+ ============table creation==============
+ 
+ create table courses(
+     cId int primary key,
+     cName varchar(30) NOT NULL,
+     fees int NOT NULL,
+     cInfo varchar(100)
+     );
+     
+ create table students(
+     sEmail varchar(30) primary key,
+     sPassword  varchar(15) NOT NULL,
+     sName varchar(30) NOT NULL
+     );
+     
+ create table batchSeats(
+     bId int primary key,
+     cId int,
+     totalSeats int,
+     seatsFilled int
+     );  
+     
+ create table batch(
+     batchUId int primary key auto_increment,
+     batchNo int,
+     cId int,
+     sEmail varchar(30),
+     foreign key(cId) references courses(cId) ON DELETE CASCADE,
+     foreign key(sEmail) references students(sEmail) ON DELETE CASCADE,
+     foreign key(batchNo) references batchSeats (bId) ON DELETE CASCADE
+     );      
+ 
